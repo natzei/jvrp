@@ -16,6 +16,11 @@ public class Problem {
 	private float vehicleCapacity;
 
 	
+	//---------------------------- Constructor -------------------------------//
+	public Problem() {
+		Customer.reset();
+	}
+	
 	//----------------------------- Methods ----------------------------------//
 
 	/**

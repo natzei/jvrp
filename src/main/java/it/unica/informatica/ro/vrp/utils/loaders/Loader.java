@@ -10,16 +10,25 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 
 import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public abstract class Loader{
 
+	protected static Logger log;
+	
+	protected Loader() {
+		log = LoggerFactory.getLogger(this.getClass());
+	}
 	
 	public Problem load(String inputFile) throws IOException {
+		log.debug("Loading from file path '{}'",inputFile);
 		return this.load(new File(inputFile));
 	}
 	
 	public Problem load(File inputFile) throws IOException {
+		log.debug("Loading from File '{}'",inputFile);
 		
 		@SuppressWarnings("resource")
 		FileInputStream fis = null;

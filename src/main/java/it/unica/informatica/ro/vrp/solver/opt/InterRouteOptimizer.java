@@ -236,6 +236,13 @@ public class InterRouteOptimizer {
 		// In this case, not consider the route
 		double n1Prev_n1Next_cost = n1Prev==n1Next? 0 : costMatrix.getCost(n1Prev, n1Next);
 		
+//		log.debug(""+costMatrix.getCost(n2, n2Next));
+//		log.debug(""+costMatrix.getCost(n1Prev, n1));
+//		log.debug(""+costMatrix.getCost(n1, n1Next));
+//		log.debug(""+costMatrix.getCost(n2, n1));
+//		log.debug(""+costMatrix.getCost(n1, n2Next));
+//		log.debug(""+n1Prev_n1Next_cost);
+		
 		double cost = costMatrix.getCost(n2, n2Next) + costMatrix.getCost(n1Prev, n1) + costMatrix.getCost(n1, n1Next) - 
 			costMatrix.getCost(n2, n1) - costMatrix.getCost(n1, n2Next) - n1Prev_n1Next_cost;
 		
@@ -248,7 +255,7 @@ public class InterRouteOptimizer {
 		 * the order of add/remove take sense only if routeA==routeB
 		 */
 		if (routeA==routeB)
-			routeA.moveNode(i, j+1);
+			routeA.moveNode(i, j);
 		else {
 			routeA.add(j+1, routeB.get(i));
 			routeB.remove(i);

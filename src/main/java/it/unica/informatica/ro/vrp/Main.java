@@ -17,6 +17,8 @@ import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import ch.qos.logback.classic.Level;
+
 
 public class Main {
 	
@@ -24,29 +26,92 @@ public class Main {
 	
 	public static void main(String[] args) throws IOException {
 		
-		String instanceFilename = Main.class.getClassLoader().getResource("vrp/vrpnc1.txt").getFile();
+		/*
+		 * Set logging level. 
+		 * Level.DEBUG adds significant overhead compared to Level.INFO.
+		 */
+		setLoggingLevel(Level.INFO);
+		
+		String[] instances = new String[] {
+				Main.class.getClassLoader().getResource("vrp/vrpnc1.txt").getFile(),
+				Main.class.getClassLoader().getResource("vrp/vrpnc2.txt").getFile(),
+				Main.class.getClassLoader().getResource("vrp/vrpnc3.txt").getFile(),
+				Main.class.getClassLoader().getResource("vrp/vrpnc4.txt").getFile(),
+				Main.class.getClassLoader().getResource("vrp/vrpnc5.txt").getFile(),
+				Main.class.getClassLoader().getResource("vrp/vrpnc6.txt").getFile(),
+				Main.class.getClassLoader().getResource("vrp/vrpnc7.txt").getFile(),
+				Main.class.getClassLoader().getResource("vrp/vrpnc8.txt").getFile(),
+				Main.class.getClassLoader().getResource("vrp/vrpnc9.txt").getFile(),
+				Main.class.getClassLoader().getResource("vrp/vrpnc10.txt").getFile(),
+				Main.class.getClassLoader().getResource("vrp/vrpnc11.txt").getFile(),
+				Main.class.getClassLoader().getResource("vrp/vrpnc12.txt").getFile(),
+				Main.class.getClassLoader().getResource("vrp/vrpnc13.txt").getFile(),
+				Main.class.getClassLoader().getResource("vrp/vrpnc14.txt").getFile()
+		};
+		
+		for (String i : instances) {
+			solve(i);
+		}
+		
+	}
+	
+	
+	
+	private static void solve(String instanceFilename) throws IOException {
+		
+		log.info("*****************************************************************************************");
+		log.info("*****************************************************************************************");
+		
+		/*
+		 * Problem loading
+		 */
 		Loader loader = ChristofidesLoader.getInstance();
 		Problem problem = loader.load(instanceFilename);
 
-		log.info("Loaded problem {}", instanceFilename);
+		log.info("Loaded problem '{}'", instanceFilename);
 		log.info("number of customers: {}", problem.getCustomers().size());
 		log.info("capacity: {}", problem.getVehicleCapacity());
 		log.info("problem is valid? {}", problem.isValid());
 		
+		/*
+		 * Define 
+		 * - Initializer: to obtain an initial solution
+		 * - Strategy: to minimize the solution at each step
+		 */
 		Initializer initializer = new BasicInitializer();
 		Strategy strategy = new SimpleStrategy(
 			problem.getCostMatrix(), 
-			TwoOptOption.BEST_IMPROVEMENT,
-			RelocateOption.BEST_IMPROVEMENT
+			TwoOptOption.FIRST_IMPROVEMENT,
+			RelocateOption.BEST_IMPROVEMENT,
+			false
 		);
 		
+		log.info("strategy: {}", strategy.toString());
+		
+		/*
+		 * Preparing solver
+		 */
 		ProblemSolver solver = new ProblemSolver(
 			initializer,
 			strategy
 		);
 		
+		/*
+		 * Solve the problem
+		 */
+		long t0 = System.currentTimeMillis();
 		Solution sol = solver.solve(problem);
-		log.info("found solution \n{}", sol.toString(problem.getCostMatrix()));
+		long t1 = System.currentTimeMillis();
+		
+		log.info("solution found \n{}", sol.toString(problem.getCostMatrix()));
+		log.info("cost: {}", sol.cost(problem.getCostMatrix()));
+		log.info("time elapsed: {}", t1-t0);
+		
+	}
+	
+	private static void setLoggingLevel(Level level) {
+	    ch.qos.logback.classic.Logger root = (ch.qos.logback.classic.Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
+	    root.setLevel(level);
 	}
 
 }

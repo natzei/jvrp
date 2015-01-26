@@ -40,24 +40,22 @@ public class ProblemSolver {
 		double currentCost = 0;
 		double cost = solution.cost(problem.getCostMatrix());
 		
-		log.info("initial solution:\n{}", solution);
-		log.info("initial cost: {}", cost);
+		log.debug("initial solution:\n{}", solution);
+		log.debug("initial cost: {}", cost);
 		
 		int i=0;
 		do {
-			log.info("*********************************");
-			log.info("iteration {}", i++);
-			log.info("cost {}", cost);
+			log.debug("*********************************");
+			log.debug("iteration {}", i++);
+			log.debug("cost {}", cost);
 			currentCost = cost;
 			
 			strategy.minimize(solution);
 			
 			cost = solution.cost(problem.getCostMatrix());
-			log.info("newCost {}", cost);
+			log.debug("newCost {}", cost);
 		}
 		while(cost<currentCost);
-		
-		log.info("end");
 		
 		return solution;
 	}

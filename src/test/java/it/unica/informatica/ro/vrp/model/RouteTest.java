@@ -15,10 +15,14 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class RouteTest {
 
+	private static final Logger log = LoggerFactory.getLogger(RouteTest.class);
+	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {}
 
@@ -171,5 +175,29 @@ public class RouteTest {
 		
 		r = new Route(d0,c1,c2,d0);
 		assertEquals(15, r.demand(), 0);
+	}
+	
+	@Test
+	public void moveTest() {
+		Depot d0 = new Depot();
+		Customer c1 = new Customer(10);
+		Customer c2 = new Customer(5);
+		Customer c3 = new Customer(10);
+		Customer c4 = new Customer(5);
+		
+		Route r = new Route(d0,c1,c2,c3,d0);
+		log.debug("route: {}", r);
+		r.moveNode(1, 3);
+		log.debug("route: {}", r);
+		
+		r = new Route(d0,c1,c2,c3,c4,d0);
+		log.debug("route: {}", r);
+		r.moveNode(4, 1);
+		log.debug("route: {}", r);
+		
+		r = new Route(d0,c1,c2,c3,c4,d0);
+		log.debug("route: {}", r);
+		r.moveNode(2, 1);
+		log.debug("route: {}", r);
 	}
 }

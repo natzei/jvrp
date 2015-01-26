@@ -1,5 +1,6 @@
 package it.unica.informatica.ro.vrp.solver.strategies;
 
+import java.util.Collections;
 import java.util.Iterator;
 
 import it.unica.informatica.ro.vrp.problem.CostMatrix;
@@ -18,23 +19,34 @@ public class SimpleStrategy implements Strategy {
 	
 	private TwoOptOption twoOptOption;
 	private RelocateOption relocateOptOption;
+	private boolean shuffleON;
 	
-	public SimpleStrategy(CostMatrix costMatrix, TwoOptOption twoOptOption, RelocateOption relocateOptOption) {
+
+	//---------------------------- Constructor -------------------------------//
+
+	public SimpleStrategy(CostMatrix costMatrix, TwoOptOption twoOptOption, RelocateOption relocateOptOption, boolean shuffleOn) {
 		
 		this.twoOptOption = twoOptOption;
 		this.relocateOptOption = relocateOptOption;
+		this.shuffleON = shuffleOn;
 		
 		this.intraOpt = new IntraRouteOptimizer(costMatrix);
 		this.interOpt = new InterRouteOptimizer(costMatrix);
 		
-		double delta = 0.000_001;
+		double delta = 0.000_000_001;
 		IntraRouteOptimizer.GAIN_DELTA = delta;
 		InterRouteOptimizer.GAIN_DELTA = delta;
 	}
 	
 	
+	//----------------------------- Methods ----------------------------------//
+	
 	@Override
 	public void minimize(Solution solution) {
+		
+		if (shuffleON)
+			Collections.shuffle(solution.getVehicles());
+		
 		// intra-route improvements on all routes
 		intraOpt.twoOpt(solution, twoOptOption);
 		
@@ -51,7 +63,6 @@ public class SimpleStrategy implements Strategy {
 	}
 	
 	
-	
 	private void cleanSolution(Solution solution) {
 		Iterator<Vehicle> it = solution.getVehicles().iterator();
 		
@@ -63,5 +74,15 @@ public class SimpleStrategy implements Strategy {
 			}
 		}
 	}
+	
 
+	//----------------------------- Overrides --------------------------------//
+	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("OPTIONS (twoOpt, relocate) = ").append(twoOptOption).append(",").append(relocateOptOption);
+		
+		return sb.toString(); 
+	}
 }

@@ -5,6 +5,13 @@ public class Customer extends Node {
 	public static int CUSTOMER_ID_COUNT = 1;
 	
 	
+	//-------------------------- Static methods ------------------------------//
+	
+	public static void reset() {
+		Customer.CUSTOMER_ID_COUNT = 1;		
+	}
+	
+	
 	//---------------------------- Constructor -------------------------------//
 
 	public Customer(float demand) {
@@ -19,4 +26,5 @@ public class Customer extends Node {
 	public boolean isDepot() {
 		return false;
 	}
+	
 }

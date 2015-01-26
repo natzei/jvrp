@@ -136,19 +136,19 @@ public class Route implements Cloneable, Iterable<Node>{
 	
 	/**
 	 * Move the node from a position to another one.
-	 * @param from
-	 * @param to
+	 * @param i		the position of the node to be moved
+	 * @param j 	the new position of the node is between j and j+1
 	 */
-	public void moveNode(int from, int to) {
+	public void moveNode(int i, int j) {
 		Validate.isTrue(this.isValid(), "check route validity: "+this.toString());
 		
-		if (from<=to) {
-			this.route.add(to, this.route.get(from));
-			this.route.remove(from);
+		if (i<=j) {
+			Node n = this.route.remove(i);
+			this.route.add(j, n);
 		}
 		else {
-			this.route.remove(from);
-			this.route.add(to, this.route.get(from));
+			Node n = this.route.remove(i);
+			this.route.add(j+1, n);
 		}
 	}
 	

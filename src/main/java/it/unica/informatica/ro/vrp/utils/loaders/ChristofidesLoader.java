@@ -12,8 +12,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Class loader for instances of Christofides, Mingozzi and Toth (1979).
@@ -32,10 +30,7 @@ public class ChristofidesLoader extends Loader{
 
 	private static Loader instance = new ChristofidesLoader();
 	
-	private static Logger log = LoggerFactory.getLogger(ChristofidesLoader.class);
-	
 	private ChristofidesLoader() {}
-	
 	
 	public static Loader getInstance() {
 		return instance;
@@ -45,7 +40,6 @@ public class ChristofidesLoader extends Loader{
 	public Problem load(Reader input) throws IOException {
 		
 		Problem problem = new Problem();
-		
 		
 		List<String> inputLines = IOUtils.readLines(input);
 		
