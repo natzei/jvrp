@@ -11,7 +11,18 @@ import it.unica.informatica.ro.vrp.solver.opt.IntraRouteOptimizer;
 import it.unica.informatica.ro.vrp.solver.opt.InterRouteOptimizer.RelocateOption;
 import it.unica.informatica.ro.vrp.solver.opt.IntraRouteOptimizer.TwoOptOption;
 
-
+/**
+ * <p>SimpleStrategy minimize the given solution using 2-opt and relocate algorithms for intra-route
+ * and inter-route improvements respectively.</p>
+ * <p>You can use {@link TwoOptOption} and {@link RelocateOption} to choose between BEST_IMPROVEMENT or
+ * FIRST_IMPROVEMENT.</p>
+ * 
+ * @see Strategy
+ * @see IntraRouteOptimizer
+ * @see InterRouteOptimizer
+ * @author nicola
+ *
+ */
 public class SimpleStrategy implements Strategy {
 
 	private IntraRouteOptimizer intraOpt;

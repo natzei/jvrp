@@ -11,12 +11,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * This class implements various type of optimizations into a {@link Route}
+ * This class implements various types of optimizations into a {@link Route}
  * trying to change the order of {@link Customer}s. So, the total amount of
  * demand does not change after optimization, only the total cost of the route changes.
  * 
- * @see {@link Route}
- * @see {@link Customer}
+ * @see Route
+ * @see Customer
  * @author nicola
  *
  */
@@ -49,7 +49,7 @@ public class IntraRouteOptimizer {
 	 * </p> 
 	 * @param route
 	 * @param option
-	 * @return
+	 * @return	true if improvements occurs, false otherwise
 	 */
 	public boolean twoOpt(Route route, TwoOptOption option) {
 		
@@ -62,6 +62,20 @@ public class IntraRouteOptimizer {
 		return false;
 	}
 	
+	/**
+	 * <p>Perform 2-opt algorithm on the given solution.</p> 
+	 * <p>You can choose between two options:
+	 * <ul>
+	 * <li><code>TwoOptOption.BEST_IMPROVEMENT</code>
+	 * <li><code>TwoOptOption.FIRST_IMPROVEMENT</code>
+	 * </ul>
+	 * </p>
+	 * <p>This method is equivalent on calling {@link #twoOpt(Route, TwoOptOption)} for
+	 * each route of {@link Solution#getVehicles()}</p>
+	 * @param solution
+	 * @param option
+	 * @return	true if improvements occurs, false otherwise
+	 */
 	public boolean twoOpt(Solution solution, TwoOptOption option) {
 		
 		boolean improv = false;
@@ -90,10 +104,8 @@ public class IntraRouteOptimizer {
 					if (best)
 						bestSwap.set(i,k);		// save indexes and swap at the end
 					else {
-						if (r.swap(i, k))		// swap and return the route
-							return true;
-						else
-							throw new RuntimeException("Error swapping nodes ("+i+","+k+") in route "+r);
+						r.swap(i, k);			// swap and return the route
+						return true;
 					}
 					
 					bestGain = gain;			// update best gain
@@ -102,7 +114,8 @@ public class IntraRouteOptimizer {
 		}
 		
 		if (bestGain>0) {
-			return r.swap(bestSwap.getFirst(), bestSwap.getSecond());
+			r.swap(bestSwap.getFirst(), bestSwap.getSecond());
+			return true;
 		}
 		else {
 			log.debug("no improvements");

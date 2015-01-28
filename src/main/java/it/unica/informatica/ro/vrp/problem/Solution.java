@@ -15,9 +15,9 @@ public class Solution {
 	//----------------------------- Methods ----------------------------------//
 	
 	/**
-	 * Return the cost of the solution.
+	 * Return the cost of the solution. 
 	 * @param costMatrix
-	 * @return
+	 * @return the total cost of the solution
 	 */
 	public double cost(CostMatrix costMatrix) {
 		double cost = 0;
@@ -30,8 +30,8 @@ public class Solution {
 	}
 	
 	/**
-	 * Check if the solution is valid
-	 * @return
+	 * Check if the solution is valid.
+	 * @return true if it's valid, false otherwise.
 	 */
 	public boolean isValid() {
 		Validate.notEmpty(vehicles, "vehicles must be defined");
@@ -41,6 +41,7 @@ public class Solution {
 				return false;
 			}
 		}
+		
 		return true;
 	}
 	
@@ -81,6 +82,7 @@ public class Solution {
 	}
 
 	public void setVehicles(List<Vehicle> vehicles) {
+		Validate.notEmpty(vehicles, "you must specify a non empty list of vehicles");
 		this.vehicles = vehicles;
 	}
 	

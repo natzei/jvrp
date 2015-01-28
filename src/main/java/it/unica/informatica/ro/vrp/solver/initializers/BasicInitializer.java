@@ -13,10 +13,12 @@ import it.unica.informatica.ro.vrp.problem.model.Vehicle;
 public class BasicInitializer implements Initializer {
 
 	/**
-	 * Get a valid solution that respects the constraints. For each customer allocate a vehicle
+	 * Get a valid solution that respects the constraints. For each customer allocate a vehicle.
 	 * to serve it.
+	 * @see Problem
+	 * @see Solution
 	 * @param problem
-	 * @return
+	 * @return a valid solution for the given problem
 	 */
 	@Override
 	public Solution initialSolution(Problem problem) {
@@ -33,6 +35,8 @@ public class BasicInitializer implements Initializer {
 			
 			sol.getVehicles().add( v );
 		}
+		
+		Validate.isTrue(sol.isValid(), "the given solution is invalid");
 		
 		return sol;
 	}

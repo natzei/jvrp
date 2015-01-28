@@ -1,4 +1,4 @@
-package it.unica.informatica.ro.vrp.opt;
+package it.unica.informatica.ro.vrp.solver.opt;
 
 import static org.junit.Assert.assertTrue;
 import it.unica.informatica.ro.vrp.problem.CostMatrix;

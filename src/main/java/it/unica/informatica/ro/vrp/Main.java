@@ -38,15 +38,8 @@ public class Main {
 				Main.class.getClassLoader().getResource("vrp/vrpnc3.txt").getFile(),
 				Main.class.getClassLoader().getResource("vrp/vrpnc4.txt").getFile(),
 				Main.class.getClassLoader().getResource("vrp/vrpnc5.txt").getFile(),
-				Main.class.getClassLoader().getResource("vrp/vrpnc6.txt").getFile(),
-				Main.class.getClassLoader().getResource("vrp/vrpnc7.txt").getFile(),
-				Main.class.getClassLoader().getResource("vrp/vrpnc8.txt").getFile(),
-				Main.class.getClassLoader().getResource("vrp/vrpnc9.txt").getFile(),
-				Main.class.getClassLoader().getResource("vrp/vrpnc10.txt").getFile(),
 				Main.class.getClassLoader().getResource("vrp/vrpnc11.txt").getFile(),
 				Main.class.getClassLoader().getResource("vrp/vrpnc12.txt").getFile(),
-				Main.class.getClassLoader().getResource("vrp/vrpnc13.txt").getFile(),
-				Main.class.getClassLoader().getResource("vrp/vrpnc14.txt").getFile()
 		};
 		
 		for (String i : instances) {

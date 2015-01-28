@@ -14,15 +14,15 @@ import java.util.List;
 import org.apache.commons.io.IOUtils;
 
 /**
- * Class loader for instances of Christofides, Mingozzi and Toth (1979).
- * <br>
- * The format of these data files is:
- * <>
+ * <p>This class loads instances of Christofides, Mingozzi and Toth (1979).</p>
+ * <p>The format of these data files is:
+ * <ul>
  * <li>number of customers, vehicle capacity, maximum route time, drop time</li>
  * <li>depot x-coordinate, depot y-coordinate</li>
  * <li>for each customer in turn: x-coordinate, y-coordinate, quantity</li>
  * <ul>
- * 
+ * </p>
+ * @see Loader
  * @author nicola
  *
  */

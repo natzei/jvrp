@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 
 import org.apache.commons.lang.Validate;
+import org.apache.commons.lang.math.IntRange;
 
 public class Route implements Cloneable, Iterable<Node>{
 	
@@ -59,7 +60,7 @@ public class Route implements Cloneable, Iterable<Node>{
 	
 	/**
 	 * Return the total amount of demand of route's customers.
-	 * @return
+	 * @return the total amount of demand of route's customers
 	 */
 	public float demand() {
 		float amount = 0;
@@ -71,7 +72,7 @@ public class Route implements Cloneable, Iterable<Node>{
 	/**
 	 * Calculate the total cost of the route.
 	 * @param costMatrix
-	 * @return
+	 * @return the total cost of the route
 	 */
 	public double cost(CostMatrix costMatrix) {
 		double cost = 0;
@@ -90,7 +91,7 @@ public class Route implements Cloneable, Iterable<Node>{
 	/**
 	 * Check if the route is valid. A valid route starts and ends in a depot,
 	 * contain at least one customer and a customer can appear only once.
-	 * @return
+	 * @return true if route is valid, false otherwise
 	 */
 	public boolean isValid() {
 		// the route contains at least 1 customer
@@ -118,20 +119,21 @@ public class Route implements Cloneable, Iterable<Node>{
 	 * </pre>
 	 * @param a
 	 * @param b
-	 * @return
 	 */
-	public boolean swap(int a, int b) {
+	public void swap(int a, int b) {
 		Validate.isTrue(this.isValid(), "check route validity: "+this.toString());
 		
-		if (a==0 || b==route.size()-1)	// you cannot move depots
-			return false;
+		IntRange range = new IntRange(0, route.size());
+		Validate.isTrue(range.containsInteger(a), "index "+a+"out of range");
+		Validate.isTrue(range.containsInteger(b), "index "+b+"out of range" );
 		
-		if (b<=a)						// index must not be consecutive and b > a
-			return false;
+		Validate.isTrue(a>0, "cannot swap depots" );
+		Validate.isTrue(b<route.size()-1, "cannot swap depots" );
+		
+		Validate.isTrue(b>a, "invalid indexes: "+a+">="+b);
 		
 		Collections.reverse(route.subList(a, b+1));
 		
-		return true;
 	}
 	
 	/**
@@ -141,6 +143,14 @@ public class Route implements Cloneable, Iterable<Node>{
 	 */
 	public void moveNode(int i, int j) {
 		Validate.isTrue(this.isValid(), "check route validity: "+this.toString());
+		
+		IntRange range = new IntRange(0, route.size());
+		Validate.isTrue(range.containsInteger(i), "index "+i+"out of range");
+		Validate.isTrue(range.containsInteger(j), "index "+j+"out of range" );
+		Validate.isTrue(range.containsInteger(j+1), "index "+(j+1)+"out of range" );
+		
+		Validate.isTrue(i>0, "cannot swap depots" );
+		Validate.isTrue(j<route.size()-1, "cannot swap depots" );
 		
 		if (i<=j) {
 			Node n = this.route.remove(i);

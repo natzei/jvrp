@@ -1,8 +1,7 @@
-package it.unica.informatica.ro.vrp;
+package it.unica.informatica.ro.vrp.problem;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
-import it.unica.informatica.ro.vrp.problem.CostMatrix;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -28,7 +27,9 @@ public class CostMatrixTest {
 	@Test
 	public void setterGetterCostTest() {
 		
-		CostMatrix c = new CostMatrix(2);
+		int matrixSize = 2;
+		
+		CostMatrix c = new CostMatrix(matrixSize);
 		c.setCost(0, 1, 5.0F);
 		assertEquals(5.0F, c.getCost(0, 1), 0);
 		
@@ -37,11 +38,21 @@ public class CostMatrixTest {
 		
 		try {
 			c.setCost(0, 0, 5);
-			fail("You never come here");
+			fail();
 		}
-		catch (Exception e) {
-			
+		catch (IllegalArgumentException e) {}
+		
+		try {
+			c.setCost(-1, 0, 5);
+			fail();
 		}
+		catch (IllegalArgumentException e) {}
+		
+		try {
+			c.setCost(0, matrixSize, 5);
+			fail();
+		}
+		catch (IllegalArgumentException e) {}
 	}
 
 }

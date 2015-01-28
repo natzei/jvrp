@@ -17,11 +17,27 @@ public class ProblemSolver {
 	private Strategy strategy;
 	private Initializer init;
 	
+
+	//---------------------------- Constructor -------------------------------//
+
 	public ProblemSolver(Initializer init, Strategy strategy) {
 		this.init = init;
 		this.strategy = strategy;
 	}
 	
+
+	//----------------------------- Methods ----------------------------------//
+
+	/**
+	 * Solve the given problem using the <code>Initializer</code> to obtain an initial solution
+	 * and at each step use the <code>Strategy</code> minimize the solution's cost. The method
+	 * stops when no improvements occur between two steps.
+	 * @see Strategy
+	 * @see Initializer
+	 * @see Problem
+	 * @param problem the {@link Problem} to be solved
+	 * @return	the solution of the problem
+	 */
 	public Solution solve(Problem problem) {
 		
 		/*
@@ -43,6 +59,10 @@ public class ProblemSolver {
 		log.debug("initial solution:\n{}", solution);
 		log.debug("initial cost: {}", cost);
 		
+		
+		/*
+		 * Step
+		 */
 		int i=0;
 		do {
 			log.debug("*********************************");

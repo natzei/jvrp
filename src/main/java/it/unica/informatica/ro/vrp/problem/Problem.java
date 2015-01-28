@@ -17,6 +17,7 @@ public class Problem {
 
 	
 	//---------------------------- Constructor -------------------------------//
+	
 	public Problem() {
 		Customer.reset();
 	}

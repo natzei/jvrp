@@ -2,6 +2,7 @@ package it.unica.informatica.ro.vrp.solver.opt;
 
 import it.unica.informatica.ro.vrp.problem.CostMatrix;
 import it.unica.informatica.ro.vrp.problem.Solution;
+import it.unica.informatica.ro.vrp.problem.model.Customer;
 import it.unica.informatica.ro.vrp.problem.model.Route;
 import it.unica.informatica.ro.vrp.problem.model.Vehicle;
 import it.unica.informatica.ro.vrp.utils.collections.Pair;
@@ -13,7 +14,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-
+/**
+ * This class implements various types of optimizations on {@link Vehicle}s trying
+ * to move {@link Customer}s between related {@link Route}s, minimizing the total 
+ * cost and respecting {@link Vehicle}'s capacity.
+ * 
+ * @see Route
+ * @see Vehicle
+ * @see Customer
+ * @author nicola
+ * 
+ */
 public class InterRouteOptimizer {
 	
 	public static final Logger log = LoggerFactory.getLogger(InterRouteOptimizer.class);
@@ -51,7 +62,7 @@ public class InterRouteOptimizer {
 	}
 	
 	/**
-	 * Try to move a customer from vehicle B to some other vehicle into the specified list
+	 * Try to move a customer from vehicle B to some other vehicle into the specified list.
 	 * @param list
 	 * @param b
 	 * @param option
@@ -72,8 +83,7 @@ public class InterRouteOptimizer {
 	
 	/**
 	 * Try to move a customer from a vehicle to some other vehicle.
-	 * @param list
-	 * @param b
+	 * @param solution
 	 * @param option
 	 * @return true if improvements occurs, false otherwise.
 	 */
@@ -235,14 +245,6 @@ public class InterRouteOptimizer {
 		// this variable is for the case in which removing n1 cause an invalid route 0 ==> 0 (that have infinite cost).
 		// In this case, not consider the route
 		double n1Prev_n1Next_cost = n1Prev==n1Next? 0 : costMatrix.getCost(n1Prev, n1Next);
-		
-//		log.debug(""+costMatrix.getCost(n2, n2Next));
-//		log.debug(""+costMatrix.getCost(n1Prev, n1));
-//		log.debug(""+costMatrix.getCost(n1, n1Next));
-//		log.debug(""+costMatrix.getCost(n2, n1));
-//		log.debug(""+costMatrix.getCost(n1, n2Next));
-//		log.debug(""+n1Prev_n1Next_cost);
-		
 		double cost = costMatrix.getCost(n2, n2Next) + costMatrix.getCost(n1Prev, n1) + costMatrix.getCost(n1, n1Next) - 
 			costMatrix.getCost(n2, n1) - costMatrix.getCost(n1, n2Next) - n1Prev_n1Next_cost;
 		
@@ -251,9 +253,6 @@ public class InterRouteOptimizer {
 	
 	
 	private void move(Route routeA, Route routeB, int j, int i) {
-		/*
-		 * the order of add/remove take sense only if routeA==routeB
-		 */
 		if (routeA==routeB)
 			routeA.moveNode(i, j);
 		else {

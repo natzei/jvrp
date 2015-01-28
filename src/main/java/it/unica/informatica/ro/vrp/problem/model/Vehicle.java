@@ -1,5 +1,7 @@
 package it.unica.informatica.ro.vrp.problem.model;
 
+import org.apache.commons.lang.Validate;
+
 import it.unica.informatica.ro.vrp.problem.CostMatrix;
 
 public class Vehicle implements Comparable<Vehicle>{
@@ -11,6 +13,7 @@ public class Vehicle implements Comparable<Vehicle>{
 	//---------------------------- Constructor -------------------------------//
 	
 	public Vehicle (float capacity) {
+		Validate.isTrue(capacity>0, "vehicle capacity must be greater than 0");
 		this.capacity = capacity;
 	}
 	
@@ -19,16 +22,16 @@ public class Vehicle implements Comparable<Vehicle>{
 	/**
 	 * Check if the vehicle is valid. In particular, route must be valid and the
 	 * vehicle capacity must be positive and greater than the amount of demand.
-	 * @return
+	 * @return true if the vehicle is valid, false otherwise
 	 */
 	public boolean isValid() {
-		return route.isValid() && capacity>0 && route.demand() <= capacity;
+		return route!=null && route.isValid() && route.demand() <= capacity;
 	}
 	
 	/**
 	 * Return the cost of the vehicle's route.
 	 * @param costMatrix
-	 * @return
+	 * @return the cost of the vehicle's route
 	 */
 	public double cost(CostMatrix costMatrix) {
 		return route.cost(costMatrix);
@@ -60,6 +63,7 @@ public class Vehicle implements Comparable<Vehicle>{
 	}
 	
 	public void setRoute(Route route) {
+		Validate.notNull(route, "cannot set null route");
 		this.route = route;
 	}
 	
