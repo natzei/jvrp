@@ -33,13 +33,13 @@ public class Main {
 		setLoggingLevel(Level.INFO);
 		
 		String[] instances = new String[] {
-				Main.class.getClassLoader().getResource("vrp/Christofides-Mingozzi-Toth_1979/vrpnc1.txt").getFile(),
-				Main.class.getClassLoader().getResource("vrp/Christofides-Mingozzi-Toth_1979/vrpnc2.txt").getFile(),
-				Main.class.getClassLoader().getResource("vrp/Christofides-Mingozzi-Toth_1979/vrpnc3.txt").getFile(),
-				Main.class.getClassLoader().getResource("vrp/Christofides-Mingozzi-Toth_1979/vrpnc4.txt").getFile(),
-				Main.class.getClassLoader().getResource("vrp/Christofides-Mingozzi-Toth_1979/vrpnc5.txt").getFile(),
-				Main.class.getClassLoader().getResource("vrp/Christofides-Mingozzi-Toth_1979/vrpnc11.txt").getFile(),
-				Main.class.getClassLoader().getResource("vrp/Christofides-Mingozzi-Toth_1979/vrpnc12.txt").getFile(),
+				ClassLoader.getSystemResource("vrp/Christofides-Mingozzi-Toth_1979/vrpnc1.txt").getFile(),
+				ClassLoader.getSystemResource("vrp/Christofides-Mingozzi-Toth_1979/vrpnc2.txt").getFile(),
+				ClassLoader.getSystemResource("vrp/Christofides-Mingozzi-Toth_1979/vrpnc3.txt").getFile(),
+				ClassLoader.getSystemResource("vrp/Christofides-Mingozzi-Toth_1979/vrpnc4.txt").getFile(),
+				ClassLoader.getSystemResource("vrp/Christofides-Mingozzi-Toth_1979/vrpnc5.txt").getFile(),
+				ClassLoader.getSystemResource("vrp/Christofides-Mingozzi-Toth_1979/vrpnc11.txt").getFile(),
+				ClassLoader.getSystemResource("vrp/Christofides-Mingozzi-Toth_1979/vrpnc12.txt").getFile(),
 		};
 		
 		for (String i : instances) {

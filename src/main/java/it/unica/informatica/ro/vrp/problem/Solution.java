@@ -54,10 +54,10 @@ public class Solution {
 		
 		for (Vehicle v : vehicles)
 			sb.append(v.getRoute().toString())
-			.append(" (d=").append(v.getRoute().demand()).append(")")
+			.append(" (demand=").append(v.getRoute().demand()).append(")")
 			.append("\n");
-			
-		return sb.toString();
+		
+		return sb.substring(0, sb.length()-1).toString();
 		
 	}
 	
@@ -66,11 +66,11 @@ public class Solution {
 		
 		for (Vehicle v : vehicles)
 			sb.append(v.getRoute().toString())
-			.append(" (d=").append(v.getRoute().demand()).append(")")
-			.append(" {c=").append(v.cost(costMatrix)).append("}")
+			.append(" (demand=").append(v.getRoute().demand()).append(")")
+			.append(" {cost=").append(v.cost(costMatrix)).append("}")
 			.append("\n");
 			
-		return sb.toString();
+		return sb.substring(0, sb.length()-1).toString();
 		
 	}
 	
