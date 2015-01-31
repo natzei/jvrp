@@ -5,10 +5,10 @@ import it.unica.informatica.ro.vrp.problem.Solution;
 import it.unica.informatica.ro.vrp.solver.ProblemSolver;
 import it.unica.informatica.ro.vrp.solver.initializers.BasicInitializer;
 import it.unica.informatica.ro.vrp.solver.initializers.Initializer;
-import it.unica.informatica.ro.vrp.solver.opt.InterRouteOptimizer.RelocateOption;
-import it.unica.informatica.ro.vrp.solver.opt.IntraRouteOptimizer.TwoOptOption;
 import it.unica.informatica.ro.vrp.solver.strategies.SimpleStrategy;
 import it.unica.informatica.ro.vrp.solver.strategies.Strategy;
+import it.unica.informatica.ro.vrp.solver.strategies.optimizers.inter_route.TwoOptOptimizer.TwoOptOption;
+import it.unica.informatica.ro.vrp.solver.strategies.optimizers.intra_route.RelocateOptimizer.RelocateOption;
 import it.unica.informatica.ro.vrp.utils.loaders.ChristofidesLoader;
 import it.unica.informatica.ro.vrp.utils.loaders.Loader;
 
@@ -39,7 +39,7 @@ public class Main {
 				ClassLoader.getSystemResource("vrp/Christofides-Mingozzi-Toth_1979/vrpnc4.txt").getFile(),
 				ClassLoader.getSystemResource("vrp/Christofides-Mingozzi-Toth_1979/vrpnc5.txt").getFile(),
 				ClassLoader.getSystemResource("vrp/Christofides-Mingozzi-Toth_1979/vrpnc11.txt").getFile(),
-				ClassLoader.getSystemResource("vrp/Christofides-Mingozzi-Toth_1979/vrpnc12.txt").getFile(),
+				ClassLoader.getSystemResource("vrp/Christofides-Mingozzi-Toth_1979/vrpnc12.txt").getFile()
 		};
 		
 		for (String i : instances) {

@@ -1,4 +1,4 @@
-package it.unica.informatica.ro.vrp.solver.opt;
+package it.unica.informatica.ro.vrp.solver.strategies.optimizers.inter_route;
 
 import it.unica.informatica.ro.vrp.problem.CostMatrix;
 import it.unica.informatica.ro.vrp.problem.Solution;
@@ -20,11 +20,11 @@ import org.slf4j.LoggerFactory;
  * @author nicola
  *
  */
-public class IntraRouteOptimizer {
+public class TwoOptOptimizer {
 	
 	public enum TwoOptOption { BEST_IMPROVEMENT, FIRST_IMPROVEMENT }
 	
-	public static final Logger log = LoggerFactory.getLogger(IntraRouteOptimizer.class);
+	public static final Logger log = LoggerFactory.getLogger(TwoOptOptimizer.class);
 	public static double GAIN_DELTA = 0.000_001;
 	
 	private CostMatrix costMatrix;
@@ -32,7 +32,7 @@ public class IntraRouteOptimizer {
 	
 	//---------------------------- Constructor -------------------------------//
 	
-	public IntraRouteOptimizer(CostMatrix costMatrix) {
+	public TwoOptOptimizer(CostMatrix costMatrix) {
 		this.costMatrix = costMatrix;
 	}
 
@@ -135,7 +135,7 @@ public class IntraRouteOptimizer {
 	 * @param route
 	 * @param i
 	 * @param j
-	 * @return
+	 * @return the gain
 	 */
 	private double calculateGain(Route route, int i, int j) {
 		int n1 = route.get(i-1).getId();

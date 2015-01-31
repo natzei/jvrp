@@ -10,8 +10,8 @@ import it.unica.informatica.ro.vrp.problem.model.Customer;
 import it.unica.informatica.ro.vrp.problem.model.Depot;
 import it.unica.informatica.ro.vrp.problem.model.Route;
 import it.unica.informatica.ro.vrp.problem.model.Vehicle;
-import it.unica.informatica.ro.vrp.solver.opt.InterRouteOptimizer;
-import it.unica.informatica.ro.vrp.solver.opt.InterRouteOptimizer.RelocateOption;
+import it.unica.informatica.ro.vrp.solver.strategies.optimizers.intra_route.RelocateOptimizer;
+import it.unica.informatica.ro.vrp.solver.strategies.optimizers.intra_route.RelocateOptimizer.RelocateOption;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -61,7 +61,7 @@ public class InterRouteOptimizerTest {
 		costMatrix.setCost( c2.getId(),  c4.getId(), 50.);
 		costMatrix.setCost( c3.getId(),  c4.getId(), 20.);
 		
-		InterRouteOptimizer opt = new InterRouteOptimizer(costMatrix);
+		RelocateOptimizer opt = new RelocateOptimizer(costMatrix);
 
 		Vehicle a = new Vehicle(1000);
 		Vehicle b = new Vehicle(1000);

@@ -30,7 +30,7 @@ public class ProblemSolver {
 
 	/**
 	 * Solve the given problem using the <code>Initializer</code> to obtain an initial solution
-	 * and at each step use the <code>Strategy</code> minimize the solution's cost. The method
+	 * and at each step use the <code>Strategy</code> to minimize the solution's cost. The method
 	 * stops when no improvements occur between two steps.
 	 * @see Strategy
 	 * @see Initializer

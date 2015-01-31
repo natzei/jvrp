@@ -4,10 +4,10 @@ import it.unica.informatica.ro.vrp.problem.Problem;
 import it.unica.informatica.ro.vrp.problem.Solution;
 import it.unica.informatica.ro.vrp.problem.model.Route;
 import it.unica.informatica.ro.vrp.problem.model.Vehicle;
-import it.unica.informatica.ro.vrp.solver.opt.InterRouteOptimizer;
-import it.unica.informatica.ro.vrp.solver.opt.InterRouteOptimizer.RelocateOption;
-import it.unica.informatica.ro.vrp.solver.opt.IntraRouteOptimizer;
-import it.unica.informatica.ro.vrp.solver.opt.IntraRouteOptimizer.TwoOptOption;
+import it.unica.informatica.ro.vrp.solver.strategies.optimizers.inter_route.TwoOptOptimizer;
+import it.unica.informatica.ro.vrp.solver.strategies.optimizers.inter_route.TwoOptOptimizer.TwoOptOption;
+import it.unica.informatica.ro.vrp.solver.strategies.optimizers.intra_route.RelocateOptimizer;
+import it.unica.informatica.ro.vrp.solver.strategies.optimizers.intra_route.RelocateOptimizer.RelocateOption;
 
 import java.util.Collections;
 import java.util.Iterator;
@@ -19,16 +19,16 @@ import java.util.Iterator;
  * FIRST_IMPROVEMENT.</p>
  * 
  * @see Strategy
- * @see IntraRouteOptimizer
- * @see InterRouteOptimizer
+ * @see TwoOptOptimizer
+ * @see RelocateOptimizer
  * @author nicola
  *
  */
 public class SimpleStrategy implements Strategy {
 
 	private Problem problem;
-	private IntraRouteOptimizer intraOpt;
-	private InterRouteOptimizer interOpt;
+	private TwoOptOptimizer intraOpt;
+	private RelocateOptimizer interOpt;
 	
 	private TwoOptOption twoOptOption;
 	private RelocateOption relocateOptOption;
@@ -44,12 +44,12 @@ public class SimpleStrategy implements Strategy {
 		this.relocateOptOption = relocateOptOption;
 		this.shuffleON = shuffleOn;
 		
-		this.intraOpt = new IntraRouteOptimizer(problem.getCostMatrix());
-		this.interOpt = new InterRouteOptimizer(problem.getCostMatrix());
+		this.intraOpt = new TwoOptOptimizer(problem.getCostMatrix());
+		this.interOpt = new RelocateOptimizer(problem.getCostMatrix());
 		
 		double delta = 0.000_000_001;
-		IntraRouteOptimizer.GAIN_DELTA = delta;
-		InterRouteOptimizer.GAIN_DELTA = delta;
+		TwoOptOptimizer.GAIN_DELTA = delta;
+		RelocateOptimizer.GAIN_DELTA = delta;
 	}
 	
 	
