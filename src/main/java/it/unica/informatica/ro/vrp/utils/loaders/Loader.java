@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.net.URL;
 
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
@@ -40,6 +41,11 @@ public abstract class Loader{
 		finally {
 			IOUtils.closeQuietly(fis);
 		}
+	}
+	
+	public Problem load(URL inputFile) throws IOException {
+		log.debug("Loading from file url '{}'",inputFile);
+		return this.load(inputFile.openStream());
 	}
 	
 	public Problem load(InputStream input) throws IOException {
