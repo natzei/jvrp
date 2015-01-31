@@ -20,8 +20,8 @@ public class Route implements Cloneable, Iterable<Node>{
 	
 	//---------------------------- Constructor -------------------------------//
 
-	public Route(Node... customers) {
-		this.add(customers);
+	public Route(Node... nodes) {
+		this.add(nodes);
 	}
 
 	

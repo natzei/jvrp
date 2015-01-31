@@ -1,15 +1,16 @@
 package it.unica.informatica.ro.vrp.solver.strategies;
 
-import java.util.Collections;
-import java.util.Iterator;
-
-import it.unica.informatica.ro.vrp.problem.CostMatrix;
+import it.unica.informatica.ro.vrp.problem.Problem;
 import it.unica.informatica.ro.vrp.problem.Solution;
+import it.unica.informatica.ro.vrp.problem.model.Route;
 import it.unica.informatica.ro.vrp.problem.model.Vehicle;
 import it.unica.informatica.ro.vrp.solver.opt.InterRouteOptimizer;
-import it.unica.informatica.ro.vrp.solver.opt.IntraRouteOptimizer;
 import it.unica.informatica.ro.vrp.solver.opt.InterRouteOptimizer.RelocateOption;
+import it.unica.informatica.ro.vrp.solver.opt.IntraRouteOptimizer;
 import it.unica.informatica.ro.vrp.solver.opt.IntraRouteOptimizer.TwoOptOption;
+
+import java.util.Collections;
+import java.util.Iterator;
 
 /**
  * <p>SimpleStrategy minimize the given solution using 2-opt and relocate algorithms for intra-route
@@ -25,6 +26,7 @@ import it.unica.informatica.ro.vrp.solver.opt.IntraRouteOptimizer.TwoOptOption;
  */
 public class SimpleStrategy implements Strategy {
 
+	private Problem problem;
 	private IntraRouteOptimizer intraOpt;
 	private InterRouteOptimizer interOpt;
 	
@@ -35,14 +37,15 @@ public class SimpleStrategy implements Strategy {
 
 	//---------------------------- Constructor -------------------------------//
 
-	public SimpleStrategy(CostMatrix costMatrix, TwoOptOption twoOptOption, RelocateOption relocateOptOption, boolean shuffleOn) {
-		
+	public SimpleStrategy(Problem problem, TwoOptOption twoOptOption, RelocateOption relocateOptOption, boolean shuffleOn) {
+
+		this.problem = problem;
 		this.twoOptOption = twoOptOption;
 		this.relocateOptOption = relocateOptOption;
 		this.shuffleON = shuffleOn;
 		
-		this.intraOpt = new IntraRouteOptimizer(costMatrix);
-		this.interOpt = new InterRouteOptimizer(costMatrix);
+		this.intraOpt = new IntraRouteOptimizer(problem.getCostMatrix());
+		this.interOpt = new InterRouteOptimizer(problem.getCostMatrix());
 		
 		double delta = 0.000_000_001;
 		IntraRouteOptimizer.GAIN_DELTA = delta;
@@ -65,14 +68,20 @@ public class SimpleStrategy implements Strategy {
 			throw new RuntimeException("found invalid solution "+solution);
 		
 		// inter-route improvements
+		addVoidRoute(solution);
 		interOpt.relocate(solution, relocateOptOption);
-		
 		cleanSolution(solution);
 		
 		if (!solution.isValid())
 			throw new RuntimeException("found invalid solution "+solution);
 	}
 	
+	
+	private void addVoidRoute(Solution solution) {
+		Vehicle v = new Vehicle(problem.getVehicleCapacity());
+		v.setRoute(new Route(problem.getDepot(), problem.getDepot()));
+		solution.getVehicles().add(v);
+	}
 	
 	private void cleanSolution(Solution solution) {
 		Iterator<Vehicle> it = solution.getVehicles().iterator();

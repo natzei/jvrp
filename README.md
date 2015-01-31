@@ -25,7 +25,7 @@ public class Main {
      */
     Initializer initializer = new BasicInitializer();
     Strategy strategy = new SimpleStrategy(
-        problem.getCostMatrix(), 
+        problem, 
         TwoOptOption.FIRST_IMPROVEMENT,
         RelocateOption.BEST_IMPROVEMENT,
         false

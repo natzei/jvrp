@@ -211,6 +211,11 @@ public class InterRouteOptimizer {
 		}
 		
 		if (bestGain>0 && bestDestVehicle!=null && bestSourceVehicle!=null) {		// move and return
+			log.debug("BEST_IMPROVEMENT: move");
+			log.debug("expanding {}, shrinking {}", bestDestVehicle.getRoute(), bestSourceVehicle.getRoute());
+			log.debug("node {}, between {} {}", bestRelocate.getSecond(), bestRelocate.getFirst(), bestRelocate.getFirst()+1);
+			log.debug("gain {}",bestGain);
+			
 			move(bestDestVehicle.getRoute(), bestSourceVehicle.getRoute(), 
 				bestRelocate.getSecond(), bestRelocate.getFirst());
 			return true;
@@ -245,7 +250,12 @@ public class InterRouteOptimizer {
 		// this variable is for the case in which removing n1 cause an invalid route 0 ==> 0 (that have infinite cost).
 		// In this case, not consider the route
 		double n1Prev_n1Next_cost = n1Prev==n1Next? 0 : costMatrix.getCost(n1Prev, n1Next);
-		double cost = costMatrix.getCost(n2, n2Next) + costMatrix.getCost(n1Prev, n1) + costMatrix.getCost(n1, n1Next) - 
+		
+		// this variable is for the case in which n1 is moved in the route 0 ==> 0 (that have infinite cost).
+		// In this case, not consider the route
+		double n2_n2Next_cost = n2==n2Next? 0 : costMatrix.getCost(n2, n2Next);
+		
+		double cost = n2_n2Next_cost + costMatrix.getCost(n1Prev, n1) + costMatrix.getCost(n1, n1Next) - 
 			costMatrix.getCost(n2, n1) - costMatrix.getCost(n1, n2Next) - n1Prev_n1Next_cost;
 		
 		return cost>GAIN_DELTA? cost: 0.;
@@ -253,6 +263,7 @@ public class InterRouteOptimizer {
 	
 	
 	private void move(Route routeA, Route routeB, int j, int i) {
+		
 		if (routeA==routeB)
 			routeA.moveNode(i, j);
 		else {

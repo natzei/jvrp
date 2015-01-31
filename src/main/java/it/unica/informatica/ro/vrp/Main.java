@@ -73,8 +73,8 @@ public class Main {
 		 */
 		Initializer initializer = new BasicInitializer();
 		Strategy strategy = new SimpleStrategy(
-			problem.getCostMatrix(), 
-			TwoOptOption.FIRST_IMPROVEMENT,
+			problem, 
+			TwoOptOption.BEST_IMPROVEMENT,
 			RelocateOption.BEST_IMPROVEMENT,
 			false
 		);
@@ -97,7 +97,7 @@ public class Main {
 		long t1 = System.currentTimeMillis();
 		
 		log.info("solution found \n{}", sol.toString(problem.getCostMatrix()));
-		log.info("cost: {}", sol.cost(problem.getCostMatrix()));
+		log.info("total cost: {}", sol.cost(problem.getCostMatrix()));
 		log.info("time elapsed: {}", t1-t0);
 		
 	}
