@@ -28,8 +28,8 @@ java -jar jvrp-0.0.1.jar --help
 #interactive mode (Christofides-Mingozzi-Toth instances)
 java -jar jvrp-0.0.1.jar
 
-#resolve your instance (with the same file format of Christofides-Mingozzi-Toth instances)
-java -jar jvrp-0.0.1.jar <file>
+#resolve your instances (with the same file format of Christofides-Mingozzi-Toth instances)
+java -jar jvrp-0.0.1.jar <file_1> ... <file_n>
 ```
 
 ####Intall on local repository
