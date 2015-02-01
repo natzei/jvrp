@@ -1,23 +1,23 @@
-# jvrp
+# Jvrp
 Java solver for capacitated vehicle routing problem (vrp). This is an academic project that implements two simple algorithms, 2-opt and relocate respectively for intra-route and 
 inter-route improvements.
 
 ##Installation notes
 
-####Requirements
+#####Requirements
 ```
 maven
 git
 jdk 1.7+
 ```
 
-####Download the project
+#####Download the project
 ```
 git clone https://github.com/atzeinicola/jvrp.git
 cd jvrp
 ```
 
-####Create executable jar
+#####Create executable jar
 ```
 #create jvrp-0.0.1.jar
 mvn clean package assembly:single
@@ -31,8 +31,9 @@ java -jar jvrp-0.0.1.jar
 #resolve your instances (with the same file format of Christofides-Mingozzi-Toth instances)
 java -jar jvrp-0.0.1.jar <file_1> ... <file_n>
 ```
+[See below](README.md#instances) for instances' format.
 
-####Intall on local repository
+#####Intall on local repository
 You can use jvrp as java library installing it on maven local repository `mvn clean install` and puttin in your pom.xml
 ```xml
 <dependency>
