@@ -5,20 +5,17 @@ inter-route improvements.
 ##Installation notes
 
 #####Requirements
-```
-maven
-git
-jdk 1.7+
-```
+- [maven](http://maven.apache.org/)
+- [git](http://git-scm.com/)
+- [jdk 1.7+](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 
 #####Download the project
-```
+```bash
 git clone https://github.com/atzeinicola/jvrp.git
 cd jvrp
 ```
-
 #####Create executable jar
-```
+```bash
 #create jvrp-0.0.1.jar
 mvn clean package assembly:single
 
@@ -42,7 +39,6 @@ You can use jvrp as java library installing it on maven local repository `mvn cl
 	<version>0.0.1</version>
 </dependency>
 ```
-
 ##Example
 ```java
 import ...
