@@ -13,9 +13,8 @@ jdk 1.7+
 
 ####Download the project
 ```
-mkdir <dir>
-cd <dir>
 git clone https://github.com/atzeinicola/jvrp.git
+cd jvrp
 ```
 
 ####Create executable jar
