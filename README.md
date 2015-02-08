@@ -28,7 +28,7 @@ java -jar jvrp-0.0.1.jar
 #resolve your instances (with the same file format of Christofides-Mingozzi-Toth instances)
 java -jar jvrp-0.0.1.jar <file_1> ... <file_n>
 ```
-[See below](README.md#instances) for instances' format.
+[See below](https://github.com/atzeinicola/jvrp#instances) for instances' format.
 
 #####Intall on local repository
 You can use jvrp as java library installing it on maven's local repository (`mvn clean install`) and putting in your pom.xml
