@@ -30,7 +30,7 @@ public class ChristofidesLoaderTest {
 	public void test() {
 		
 		ClassLoader cl = this.getClass().getClassLoader();
-		String instanceFilename = cl.getResource("vrp/vrpnc1.txt").getFile();
+		String instanceFilename = cl.getResource("vrp/Christofides-Mingozzi-Toth_1979/vrpnc1.txt").getFile();
 		
 		Loader loader = ChristofidesLoader.getInstance();
 		

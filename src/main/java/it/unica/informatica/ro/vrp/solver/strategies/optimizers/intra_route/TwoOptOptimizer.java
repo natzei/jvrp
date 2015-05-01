@@ -1,4 +1,4 @@
-package it.unica.informatica.ro.vrp.solver.strategies.optimizers.inter_route;
+package it.unica.informatica.ro.vrp.solver.strategies.optimizers.intra_route;
 
 import it.unica.informatica.ro.vrp.problem.CostMatrix;
 import it.unica.informatica.ro.vrp.problem.Solution;

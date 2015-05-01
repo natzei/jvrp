@@ -4,10 +4,10 @@ import it.unica.informatica.ro.vrp.problem.Problem;
 import it.unica.informatica.ro.vrp.problem.Solution;
 import it.unica.informatica.ro.vrp.problem.model.Route;
 import it.unica.informatica.ro.vrp.problem.model.Vehicle;
-import it.unica.informatica.ro.vrp.solver.strategies.optimizers.inter_route.TwoOptOptimizer;
-import it.unica.informatica.ro.vrp.solver.strategies.optimizers.inter_route.TwoOptOptimizer.TwoOptOption;
-import it.unica.informatica.ro.vrp.solver.strategies.optimizers.intra_route.RelocateOptimizer;
-import it.unica.informatica.ro.vrp.solver.strategies.optimizers.intra_route.RelocateOptimizer.RelocateOption;
+import it.unica.informatica.ro.vrp.solver.strategies.optimizers.inter_route.RelocateOptimizer;
+import it.unica.informatica.ro.vrp.solver.strategies.optimizers.inter_route.RelocateOptimizer.RelocateOption;
+import it.unica.informatica.ro.vrp.solver.strategies.optimizers.intra_route.TwoOptOptimizer;
+import it.unica.informatica.ro.vrp.solver.strategies.optimizers.intra_route.TwoOptOptimizer.TwoOptOption;
 
 import java.util.Collections;
 import java.util.Iterator;

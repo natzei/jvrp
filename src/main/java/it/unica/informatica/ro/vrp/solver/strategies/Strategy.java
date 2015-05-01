@@ -3,8 +3,8 @@ package it.unica.informatica.ro.vrp.solver.strategies;
 import it.unica.informatica.ro.vrp.problem.Problem;
 import it.unica.informatica.ro.vrp.problem.Solution;
 import it.unica.informatica.ro.vrp.solver.ProblemSolver;
-import it.unica.informatica.ro.vrp.solver.strategies.optimizers.inter_route.TwoOptOptimizer;
-import it.unica.informatica.ro.vrp.solver.strategies.optimizers.intra_route.RelocateOptimizer;
+import it.unica.informatica.ro.vrp.solver.strategies.optimizers.inter_route.RelocateOptimizer;
+import it.unica.informatica.ro.vrp.solver.strategies.optimizers.intra_route.TwoOptOptimizer;
 
 /**
  * <p>A Strategy try to minimize the cost of a given solution. It's used by

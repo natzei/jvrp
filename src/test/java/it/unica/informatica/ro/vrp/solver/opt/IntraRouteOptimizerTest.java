@@ -5,8 +5,8 @@ import it.unica.informatica.ro.vrp.problem.CostMatrix;
 import it.unica.informatica.ro.vrp.problem.model.Customer;
 import it.unica.informatica.ro.vrp.problem.model.Depot;
 import it.unica.informatica.ro.vrp.problem.model.Route;
-import it.unica.informatica.ro.vrp.solver.strategies.optimizers.inter_route.TwoOptOptimizer;
-import it.unica.informatica.ro.vrp.solver.strategies.optimizers.inter_route.TwoOptOptimizer.TwoOptOption;
+import it.unica.informatica.ro.vrp.solver.strategies.optimizers.intra_route.TwoOptOptimizer;
+import it.unica.informatica.ro.vrp.solver.strategies.optimizers.intra_route.TwoOptOptimizer.TwoOptOption;
 
 import org.junit.After;
 import org.junit.AfterClass;
