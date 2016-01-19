@@ -129,7 +129,7 @@ The `SimpleStrategy` implements `Strategy` and minimize the solution appling 2-o
 - `RelocateOption` (inter-route improvements)
   - `RelocateOption.FIRST_IMPROVEMENT`: relocate a customer on the first route that can receive it and that produce an improvement;
   - `RelocateOption.BEST_IMPROVEMENT`: calculate the gain obtained relocating all customers in all possible route and in all possible route's positions, then moved the customer with the best gain;
-- `boolean shuffle`: if true, the route list (in other words the solution) is shuffled before appling the preceding algorithms. This parameter make sense when you use `RelocateOption.FIRST_IMPROVEMENT`, otherwise the `shuffle` option does not change the program behaviour.
+- `boolean shuffle`: if true, the route list (i.e. a valid solution) is shuffled before appling the preceding algorithms. This parameter make sense when you use `RelocateOption.FIRST_IMPROVEMENT`, otherwise the `shuffle` option does not change the program output.
 
 ##Instances
 Jvrp can load problem's instances directly from file. Currently is only supported **_Christofides-Mingozzi-Toth_** (1979) instance file format:
