@@ -2,19 +2,19 @@
 Java solver for capacitated vehicle routing problem (vrp). This is an academic project that implements two simple algorithms, 2-opt and relocate respectively for intra-route and 
 inter-route improvements.
 
-##Installation notes
+## Installation notes
 
-#####Requirements
+##### Requirements
 - [maven](http://maven.apache.org/)
 - [git](http://git-scm.com/)
 - [jdk 1.7+](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 
-#####Download the project
+##### Download the project
 ```bash
 git clone https://github.com/atzeinicola/jvrp.git
 cd jvrp
 ```
-#####Create executable jar
+##### Create executable jar
 ```bash
 #create jvrp-0.0.1.jar
 mvn clean package assembly:single
@@ -30,7 +30,7 @@ java -jar jvrp-0.0.1.jar <file_1> ... <file_n>
 ```
 [See below](https://github.com/atzeinicola/jvrp#instances) for instances' format.
 
-#####Intall on local repository
+##### Intall on local repository
 You can use jvrp as java library installing it on maven's local repository (`mvn clean install`) and putting in your pom.xml
 ```xml
 <dependency>
@@ -39,7 +39,7 @@ You can use jvrp as java library installing it on maven's local repository (`mvn
 	<version>0.0.1</version>
 </dependency>
 ```
-##Example
+## Example
 ```java
 import ...
 
@@ -110,14 +110,14 @@ solution:
 cost: 594.9709713895746
 ```
 
-##`ProblemSolver`, `Initializer` and `Strategy`
+## `ProblemSolver`, `Initializer` and `Strategy`
 The `Initializer` and `Strategy` interfaces are uses by `ProblemSolver`, that solve the problem heuristically.
 
 An `Initializer` have the method `initialSolution(Problem)` that return a valid `Solution` to the given problem. This is the first solution to minimize.
 
 A `Strategy` have the method `minimize(Solution)` that minimize the given solution and is called repetitively by the solver as long as no improvements occurs between two iterations.
 
-####`BasicInitializer` and `SimpleStrategy`
+#### `BasicInitializer` and `SimpleStrategy`
 The `BasicInitializer` implements `Initializer` and returns a valid solution in which each customer is served by one vehicle. This solution is always valid, because the vehicle's capacity is always greater or equal to customer's demand, otherwise the problem is invalid.
 
 The `SimpleStrategy` implements `Strategy` and minimize the solution appling 2-opt improvements on each route and trying to move one customer to another route.
@@ -131,7 +131,7 @@ The `SimpleStrategy` implements `Strategy` and minimize the solution appling 2-o
   - `RelocateOption.BEST_IMPROVEMENT`: calculate the gain obtained relocating all customers in all possible route and in all possible route's positions, then moved the customer with the best gain;
 - `boolean shuffle`: if true, the route list (i.e. a valid solution) is shuffled before appling the preceding algorithms. This parameter make sense when you use `RelocateOption.FIRST_IMPROVEMENT`, otherwise the `shuffle` option does not change the program output.
 
-##Instances
+## Instances
 Jvrp can load problem's instances directly from file. Currently is only supported **_Christofides-Mingozzi-Toth_** (1979) instance file format:
 ```
 number_of_customers vehicle_capacity maximum_route_time drop_time
@@ -144,5 +144,5 @@ x-coordinate y-coordinate quantity    #customer N
 **Note**: `maximum_route_time` and `drop_time` are ignored.
 All instances can be found into `src/main/resources/vrp/Christofides-Mingozzi-Toth_1979` and the related loader is `ChristofidesLoader`.
 
-####Other loaders
+#### Other loaders
 You can implement how many loaders you want. You must extend the abstract class `Loader` and implement the abstract method `load(Reader input)`, that return a valid `Problem`. The `Loader` class contains only overloaded `load()` methods for different input type, that will call your implementation.
