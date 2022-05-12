@@ -34,8 +34,8 @@ java -jar jvrp-0.0.1.jar <file_1> ... <file_n>
 You can use jvrp as java library installing it on maven's local repository (`mvn clean install`) and putting in your pom.xml
 ```xml
 <dependency>
-	<group-id>it.unica.informatica.ro</group-id>
-	<artifact-id>jvrp</artifact-id>
+	<groupId>it.unica.informatica.ro</groupId>
+	<artifactId>jvrp</artifactId>
 	<version>0.0.1</version>
 </dependency>
 ```
