@@ -7,7 +7,7 @@ inter-route improvements.
 ##### Requirements
 - [maven](http://maven.apache.org/)
 - [git](http://git-scm.com/)
-- [jdk 1.7+](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+- [jdk 17+](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 
 ##### Download the project
 ```bash
@@ -20,13 +20,13 @@ cd jvrp
 mvn clean package assembly:single
 
 #display usage
-java -jar jvrp-0.0.1.jar --help
+java -jar jvrp-0.0.2.jar --help
 
 #interactive mode (Christofides-Mingozzi-Toth instances)
-java -jar jvrp-0.0.1.jar
+java -jar jvrp-0.0.2.jar
 
 #resolve your instances (with the same file format of Christofides-Mingozzi-Toth instances)
-java -jar jvrp-0.0.1.jar <file_1> ... <file_n>
+java -jar jvrp-0.0.2.jar <file_1> ... <file_n>
 ```
 [See below](https://github.com/atzeinicola/jvrp#instances) for instances' format.
 
@@ -36,7 +36,7 @@ You can use jvrp as java library installing it on maven's local repository (`mvn
 <dependency>
 	<groupId>it.unica.informatica.ro</groupId>
 	<artifactId>jvrp</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.2</version>
 </dependency>
 ```
 ## Example

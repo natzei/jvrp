@@ -41,7 +41,8 @@ public class Main {
 		 * Get args parameters
 		 */
 		ConsoleParameters parameters = new ConsoleParameters();
-		JCommander commander = new JCommander(parameters, args);
+		JCommander commander = new JCommander(parameters);
+		commander.parse(args);
 		commander.setProgramName("jvrp");
 		
 		if (parameters.isHelp()) {
@@ -183,7 +184,7 @@ public class Main {
 		
 		log.info("solution found \n{}", sol.toString(problem.getCostMatrix()));
 		log.info("total cost: {}", sol.cost(problem.getCostMatrix()));
-		log.info("time elapsed: {}", t1-t0);
+		log.info("time elapsed: {}ms", t1-t0);
 		
 		System.out.println();
 	}
